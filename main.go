@@ -128,7 +128,7 @@ func main() {
 	}
 	params := DescriptionParameters{PullRequests: mergedPullRequests}
 	tmpl, err := template.New("description").Parse(`{{range $pr := .PullRequests}}
-- #{{$pr.ID}} {{$pr.Title}}{{end}}`)
+- #{{$pr.ID}} {{$pr.Title}} (@{{$pr.Author.User.Name}}){{end}}`)
 	if err != nil {
 		logger.Fatalln(err)
 	}
