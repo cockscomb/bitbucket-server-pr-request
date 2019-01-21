@@ -21,4 +21,6 @@
     from branch name
 --to branch name
     to branch name
+--timeout seconds
+    timeout
 ```
