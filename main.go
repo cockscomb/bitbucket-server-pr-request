@@ -27,6 +27,7 @@ func main() {
 		repositoryName  = flag.String("repository", "", "Repository name")
 		fromBranchName  = flag.String("from", "", "from `branch name`")
 		toBranchName    = flag.String("to", "", "to `branch name`")
+		timeoutSec      = flag.Int("timeout", 3, "set context timesout `Seconds`")
 	)
 	flag.Parse()
 
@@ -41,7 +42,7 @@ func main() {
 		logger.Fatalln("Required parameters are missing")
 	}
 
-	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+	ctx, cancel := context.WithTimeout(context.Background(), time.Duration(*timeoutSec)*time.Second)
 	defer cancel()
 
 	api, err := NewBitBucketAPI(*bitbucketServer, *username, *password)
